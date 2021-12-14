@@ -1,0 +1,19 @@
+<?php 
+    require_once "../clases/Crud.php";
+    $crud = new Crud();
+    $datos = array(
+        "nombre" => $_POST['nombre'],
+        "paterno" => $_POST['paterno'],
+        "materno" => $_POST['materno'],
+        "fecha_nacimiento" => $_POST['fecha_nacimiento']
+    );
+        
+    
+    $respuesta = $crud->obtenerDocumento($datos);
+
+    if($respuesta->getInsertedId() > 0){
+        header("location:../index.php");
+    } else {
+        print_r($respuesta);
+    }
+?>
